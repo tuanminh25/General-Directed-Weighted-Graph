@@ -1,7 +1,5 @@
 <h1 class="title" style="text-align:center; font-weight:bold">General Directed Weighted Graph</h1>
 
-# **Project Name**  
-
 ## **Overview**  
 This project implements a **flexible and efficient graph representation** with an emphasis on **modularity and extendability**. It provides a well-defined **edge class hierarchy** supporting both **weighted and unweighted edges**, along with comprehensive **access and modification methods**. The project also includes an **iterator interface** for traversing the graph structure and ensures **const-correctness** for safe and predictable usage.
 
