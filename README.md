@@ -8,7 +8,7 @@ This project implements a **flexible and efficient graph representation** with a
 - **Edge Class Hierarchy**:  
   - **`edge`**: Base class for all edges.  
   - **`weighted_edge`**: Extends `edge` to support weights.  
-  - **`unweighted_edge`**: A specialized subclass representing edges without weights.  
+  - **`unweighted_edge`**: Extends `edge` but support no weights.   
 - **Iterator Support**:  
   - Provides **iterator constructors, traversal methods, and comparison operators** for efficient graph traversal.  
 - **Comparison & Extraction**:  
