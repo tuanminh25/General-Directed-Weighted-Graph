@@ -1,6 +1,44 @@
 <h1 class="title" style="text-align:center; font-weight:bold">General Directed Weighted Graph</h1>
 
-[toc]
+# **Project Name**  
+
+## **Overview**  
+This project implements a **flexible and efficient graph representation** with an emphasis on **modularity and extendability**. It provides a well-defined **edge class hierarchy** supporting both **weighted and unweighted edges**, along with comprehensive **access and modification methods**. The project also includes an **iterator interface** for traversing the graph structure and ensures **const-correctness** for safe and predictable usage.
+
+## **Features**  
+- **Graph Representation**: Implements a structured approach to defining graphs, including **constructors, accessors, and modifiers**.  
+- **Edge Class Hierarchy**:  
+  - **`edge`**: Base class for all edges.  
+  - **`weighted_edge`**: Extends `edge` to support weights.  
+  - **`unweighted_edge`**: A specialized subclass representing edges without weights.  
+- **Iterator Support**:  
+  - Provides **iterator constructors, traversal methods, and comparison operators** for efficient graph traversal.  
+- **Comparison & Extraction**:  
+  - Defines **comparison operators** for edges and iterators.  
+  - Implements **extractor methods** for retrieving edge properties.  
+- **Const-Correctness**:  
+  - Adheres to **const-correct programming principles** to ensure immutability where required.  
+
+## **Project Structure**  
+- **Change Log** – Tracks updates and modifications.  
+- **The Task** – General project description and requirements.  
+  - **Definitions** – Key terms and structures used in the implementation.  
+  - **Constructors** – Methods for creating instances of the graph and its components.  
+- **Edge Class Hierarchy** – Organized edge structures supporting different types.  
+- **Graph Interface**  
+  - **Modifiers** – Functions to modify graph properties and structure.  
+  - **Accessors** – Methods to retrieve graph information.  
+  - **Iterator Access** – Mechanisms for iterating over graph elements.  
+  - **Comparisons** – Operators for comparing different graph components.  
+  - **Extractors** – Functions to extract details from graph objects.  
+- **Iterator Implementation** – Handles traversal and element access in the graph.  
+- **Compulsory Internal Representation** – Defines the internal data structure requirements.  
+- **Other Notes**  
+  - **Const-Correctness** – Enforces safe and efficient usage of `const` where applicable.  
+
+## **Usage**  
+This project serves as a foundation for working with **graph structures**, making it useful for applications in **network analysis, route optimization, and algorithm development**.  
+
 
 # 1 Change Log <a name="1-change-log"></a>
 
