@@ -99,8 +99,6 @@ Some words have special meaning in this document. This section precisely defines
 
 # 2.2 Constructors 
 
-**It’s very important your constructors work. If we can’t validly construct your objects, we can’t test any of your other functions.**
-
 ```cpp
 graph();
 ```
@@ -159,13 +157,7 @@ auto operator=(graph const& other) -> graph&;
 
 ## 2.3.1 edge
 
-The `edge` class should be an abstract **BASE** class, which means at least **one** of its member functions must be declared as **pure** virtual. `edge` class takes template typenames in the same order as `graph` class.
-
-[Note: Of the member functions you are required to implement for edge, there is at least one natural candidate which should be pure virtual. You should consider declaring a function as **pure** virtual when its behavior must be implemented differently by each derived class. —end note] 
-
-You will note that **ONLY** the member functions listed below can be specified as public in edge or its derived classes. You are free to create other private functions to help with the implementation of the derived classes and the features required for `gdwg::graph`.
-
-NOTE: We didn't specify the keywords for functions such as `const`, `virtual`, `override`, or `noexcept`, this is intentional. You should use them where appropriate.
+The `edge` class would be an abstract **BASE** class, which means at least **one** of its member functions must be declared as **pure** virtual. `edge` class takes template typenames in the same order as `graph` class.
 
 
 ```cpp
@@ -297,6 +289,8 @@ auto merge_replace_node(N const& old_data, N const& new_data) -> void;
     Diagrammatic example.
 
 <img src="https://i.imgur.com/gCDHqrD.png" />
+
+ 
 
 <p><br/></p>
 
@@ -689,37 +683,5 @@ Your graph must not internally store redundant copies of nodes or edges. You may
 
 2. For each edge, you are not required to use `edge` for internal representation, however no matter it's weighted or unweighted, you should avoid using unnecessary additional memory wherever possible.
 
-# 2.11 Other notes
-
-You must:
-* Include a header guard in `src/gdwg_graph.h`
-* Use C++20 style and methods where appropriate
-* Make sure that *all appropriate member functions* are `const`-qualified
-* Leave a moved-from object in a state with no nodes.
-* Implement this class within the namespace `gdwg`.
-* **do not** implement an overload for `operator!=` in Assignment 3.
-
-You must **NOT**:
-
-* Write to any files that aren’t provided in the repo (e.g. storing your vector data in an auxilliary file)
-* Add additional members to the <b style="color: red;">public</b> interface. The **only** exception is you can add friend non-member operators
-
-
-You:
-
-* Should try to mark member functions that will not throw exceptions with `noexcept`
-* Are not required to make any member function `explicit` unless directly asked to in the spec.
-
-## 2.11.1 `const`-correctness [const.correctness]<a name="2.11.1-const-correctness-constcorrectness"></a>
-
-We have deliberately removed the `const`-qualifiers for most member functions from the specification. **You are required to work out which functions must be `const`-qualified.** You must ensure that each operator and member function appropriately either has:
-
-* A `const` member function; or
-* A non-`const` member function; or
-* Both a `const` and non-const member function
-
-Please think carefully about this. The function declarations intentionally do not specify their constness, except for the `begin()` and `end()` member functions. These are `const`-qualified to help you out.
-
-In most cases you will only need a single function in the overload set.
-
-As noted in <a href="#29-compulsory-internal-representation-gdwginternal">the compulsory internal representation</a> section, you are unlikely to want to use this directly within your representation. However, it is used by the `iterator` type, and is good practice to have for a container.
+# Final notes:
+This project was my third assignment for my advanced C++ course at university. The provided specification is a simplified version of the original assignment. I did not create every aspect of this specification, nor did I design the entire structure, including the CMake configuration, Clang format, and utility folder. I acknowledge and credit my university's teaching team for providing such an excellent assignment.
