@@ -60,38 +60,21 @@ This project serves as a foundation for working with **graph structures**, makin
 - 26/07/2024 Clarification on template typename order of `edge`
 - 26/07/2024 Allowed to add non-member operator
 
+# 2 The Task
 
-# 2 The Task <a name="2-the-task"></a>
+I will implement a generic directed weighted graph (GDWG) with value-semantics in C++. Node data and edge weights are parameterized types (e.g., `gdwg::graph<std::string, int>`).  Nodes and edges are assumed copyable, comparable, streamable, and hashable.
 
-In this assignment, you will write a *generic directed weighted graph* (GDWG) with value-semantics in C++. Both the data stored at a node and the weight stored at an edge will be parameterised types. The types may be different. For example, here is a graph with nodes storing `std::string` and edges weighted by `int`:
+Nodes are unique.  Incoming/outgoing edges and in/out-degree are defined as usual. Graphs can contain both weighted and unweighted edges (at most one unweighted edge per source/destination pair).
 
-```cpp
-using graph = gdwg::graph<std::string, int>;
-```
+Edges are ordered by source, destination, and then weight (for weighted edges). Unweighted edges precede weighted edges with the same source/destination. Edges with equal source, destination, and weight are equal.
 
-Formally, this directed weighted graph *G* = (*N*,  *E*) will consist of a set of nodes *N* and a set of unweighted/weighted edges *E*.
+Dynamic polymorphism is used for the `edge` class hierarchy:
 
-Explicit assumption for *N* and *E*: copyable, comparable (i.e. you can do ==, < etc.), streamable (i.e. you can use `operator<<`) and hashable.
+*   `edge`: Abstract base class.
+*   `weighted_edge`: Represents a weighted edge.
+*   `unweighted_edge`: Represents an unweighted edge.
 
-All nodes should be unique, that is to say, no two nodes will have the same value and shall not compare equal using `operator==`.
-
-Given a node, an edge directed into it is called an *incoming edge* and an edge directed out of it is called an *outgoing edge*. The *in-degree* of a node is the number of its incoming edges. Similarly, the *out-degree* of a node is the number of its outgoing edges.
-
-A graph can include both weighted and unweighted edges. This applies to this assignment as well, therefore, you need to differentiate between weighted and unweighted edges in your implementation. Only **ONE** unweighted edge exists between a given source and destination node.
-
-Edges are ordered first by source node, then by destination node, and finally by edge weight (if it exists) in ascending order. Unweighted edges should precede all weighted edges with the same source and destination node. If two edges have equal source and destination nodes, as well as equal weights, they are considered to be equal.
-
-You need to make use of dynamic polymorphism to implement a base `edge` class, from which `unweighted_edge` and `weighted_edge` classes will inherit. The `edge` class will represent a directed edge from a source node `src` to a destination node `dst`. The derived classes will specialise the behaviour of the edge based on whether it is weighted or unweighted.
-
-To summarise, you will need to implement the following classes along with `gdwg::graph`:
-
-* edge: An abstract base class representing an edge in the graph, which can be either weighted or unweighted. It declares virtual functions that must be implemented by its derived classes.
-* weighted_edge: A derived class of `edge` that represents an edge with an associated weight.
-* unweighted_edge: A derived class of `edge` that represents an edge without an associated weight.
-
-Note that edges can be **reflexive**, meaning the source and destination nodes of an edge could be the same.
-
-__*G*__ is a multi-edged graph, as there may be two edges from the same source node to the same destination node with two different weights. However, two edges from the same source node to the same destination node **cannot** have the same weight.
+Edges can be reflexive. The graph is multi-edged (multiple edges between the same source/destination with *different* weights allowed).
 
 # 2.1 Definitions
 
@@ -113,13 +96,6 @@ Some words have special meaning in this document. This section precisely defines
 * The class synopsis is the minimum text your header requires to compile most tests (this doesn’t mean that it will necessarily link or run as expected).
 * Blue text in code will link to C++ Reference or to another part of this document.
 * This section makes use of [stable.names]. A stable name is a short name for a (sub)section, and isn’t supposed to change. We will use these to reference specific sections of the document.
-
-  [*Example*:
-  > Student: Do we need to define `gdwg::graph<N, E>::operator!=`?
-  >
-  > Tutor: [other.notes] mentions that you don’t need to so you can get used to C++20’s generated operators.
-
-  —*end example*]
 
 # 2.2 Constructors 
 
